@@ -19,8 +19,8 @@ class _WeightFormState extends ConsumerState<WeightForm> {
   DateTime _selectedTime = DateTime.now();
 
   void _onSave() {
-    ref.watch(weightsProvider.notifier).addWeight(
-        Weight(time: _selectedTime, weight: int.parse(_weightController.text)));
+    ref.watch(weightsProvider.notifier).addWeight(Weight(
+        time: _selectedTime, weight: double.parse(_weightController.text)));
     Navigator.of(context).pop();
   }
 

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 class Weight {
   final DateTime time;
-  final int weight;
+  final double weight;
 
   Weight({
     required this.time,
@@ -11,7 +11,7 @@ class Weight {
 
   Weight copyWith({
     DateTime? time,
-    int? weight,
+    double? weight,
   }) {
     return Weight(
       time: time ?? this.time,
@@ -29,7 +29,7 @@ class Weight {
   factory Weight.fromMap(Map<dynamic, dynamic> map) {
     return Weight(
       time: DateTime.fromMillisecondsSinceEpoch(map['time'] as int),
-      weight: map['weight'] as int,
+      weight: map['weight'] as double,
     );
   }
 
