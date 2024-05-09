@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weight_tracker/presentation/widgets/date_picker.dart';
 
 class WeightForm extends StatefulWidget {
   const WeightForm({super.key});
@@ -34,6 +35,8 @@ class _WeightFormState extends State<WeightForm> {
                   border: InputBorder.none,
                   labelText: "Weight"),
             ),
+            const SizedBox(height: 28),
+            const DatePicker(),
             const SizedBox(height: 28),
             ElevatedButton(onPressed: _onSave, child: const Text("Save")),
           ],

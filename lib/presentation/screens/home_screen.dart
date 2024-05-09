@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       shrinkWrap: true,
                       itemBuilder: (context, index) => CommonListTile(
                             title: weightsList[index].weight.toString(),
-                            subTitle: weightsList[index].time.toString(),
+                            subTitle: formatter.format(weightsList[index].time),
                           ))
             ],
           ),
