@@ -13,8 +13,13 @@ class CommonListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(title),
-      subtitle: Text(subTitle),
+      contentPadding: const EdgeInsets.all(8),
+      leading: const Icon(Icons.circle_rounded),
+      title: Text("$title Kg"),
+      trailing: Text(
+        subTitle,
+        style: const TextStyle(fontSize: 15),
+      ),
     );
   }
 }

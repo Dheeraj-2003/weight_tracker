@@ -19,14 +19,14 @@ class Weight {
     );
   }
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+  Map<dynamic, dynamic> toMap() {
+    return <dynamic, dynamic>{
       'time': time.millisecondsSinceEpoch,
       'weight': weight,
     };
   }
 
-  factory Weight.fromMap(Map<String, dynamic> map) {
+  factory Weight.fromMap(Map<dynamic, dynamic> map) {
     return Weight(
       time: DateTime.fromMillisecondsSinceEpoch(map['time'] as int),
       weight: map['weight'] as int,
@@ -51,9 +51,3 @@ class Weight {
   @override
   int get hashCode => time.hashCode ^ weight.hashCode;
 }
-
-List<Weight> weights = [
-  Weight(time: DateTime.now(), weight: 70),
-  Weight(time: DateTime.now(), weight: 67),
-  Weight(time: DateTime.now(), weight: 65)
-];

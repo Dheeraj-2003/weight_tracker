@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:weight_tracker/data/models/weight.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weight_tracker/presentation/screens/add_weight_screen.dart';
-import 'package:weight_tracker/presentation/widgets/common_list_tile.dart';
+import 'package:weight_tracker/presentation/widgets/weights_list.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() {
+    return _HomeScreenState();
+  }
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  final List<Weight> weightsList = weights;
-
+class _HomeScreenState extends ConsumerState<HomeScreen> {
   void _openAddCategoryOverlay() {
     showModalBottomSheet(
         context: context,
@@ -37,28 +37,16 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Center(
         child: Container(
           padding: const EdgeInsets.all(8),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
+          child: const Column(
             children: [
-              const Text(
+              Text(
                 "Recent Weight Entries",
                 style: TextStyle(fontSize: 18),
               ),
-              weightsList.isEmpty
-                  ? const Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Added weights will be shown here."),
-                      ],
-                    )
-                  : ListView.builder(
-                      itemCount: weightsList.length,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) => CommonListTile(
-                            title: weightsList[index].weight.toString(),
-                            subTitle: formatter.format(weightsList[index].time),
-                          ))
+              SizedBox(
+                height: 10,
+              ),
+              Expanded(child: WeightsList()),
             ],
           ),
         ),

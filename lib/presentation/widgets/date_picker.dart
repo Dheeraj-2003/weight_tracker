@@ -4,7 +4,9 @@ import 'package:intl/intl.dart';
 final formatter = DateFormat.yMd();
 
 class DatePicker extends StatefulWidget {
-  const DatePicker({super.key});
+  const DatePicker({required this.onSelect, super.key});
+
+  final void Function(DateTime time) onSelect;
 
   @override
   State<DatePicker> createState() => _DatePickerState();
@@ -26,6 +28,7 @@ class _DatePickerState extends State<DatePicker> {
         _selectedDate = pickedDate;
       }
     });
+    widget.onSelect(_selectedDate);
   }
 
   @override
