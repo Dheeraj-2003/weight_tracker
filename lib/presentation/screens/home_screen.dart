@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:weight_tracker/presentation/providers/weights/weights_provider.dart';
 import 'package:weight_tracker/presentation/screens/add_weight_screen.dart';
+import 'package:weight_tracker/presentation/widgets/plot/line_chart.dart';
 import 'package:weight_tracker/presentation/widgets/weights_list.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -37,16 +40,32 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       body: Center(
         child: Container(
           padding: const EdgeInsets.all(8),
-          child: const Column(
+          child: Column(
             children: [
-              Text(
-                "Recent Weight Entries",
+              const Text(
+                "Your weight through out the months",
                 style: TextStyle(fontSize: 18),
               ),
-              SizedBox(
+              const SizedBox(
+                height: 20,
+              ),
+              const SizedBox(height: 250, child: LineChartWidget()),
+              const SizedBox(
+                height: 20,
+              ),
+              InkWell(
+                onTap: () {
+                  ref.watch(weightsProvider.notifier).getWeights();
+                },
+                child: const Text(
+                  "Recent Weight Entries",
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+              const SizedBox(
                 height: 10,
               ),
-              Expanded(child: WeightsList()),
+              const Expanded(child: WeightsList()),
             ],
           ),
         ),

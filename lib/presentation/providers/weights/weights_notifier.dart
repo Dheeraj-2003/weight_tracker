@@ -20,16 +20,17 @@ class WeightsNotifier extends StateNotifier<WeightsState> {
       await weightRepository.addWeight(weight);
       getWeights();
     } catch (e) {
-      log("$e");
+      log("add weights: $e");
     }
   }
 
   void getWeights() async {
     try {
       weightList = await weightRepository.getWeights();
+      weightList.sort((b, a) => a.time.compareTo(b.time));
       state = WeightsLoadedState(weights: weightList);
     } catch (e) {
-      log("$e");
+      log("get weights: $e");
     }
   }
 }
