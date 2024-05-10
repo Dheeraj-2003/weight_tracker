@@ -74,7 +74,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               const SizedBox(
                 height: 20,
               ),
-              const SizedBox(height: 250, child: LineChartWidget()),
+              const SizedBox(height: 225, child: LineChartWidget()),
               const SizedBox(
                 height: 20,
               ),

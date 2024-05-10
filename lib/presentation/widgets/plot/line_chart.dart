@@ -77,7 +77,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
               child: Text("Add weights to analyze"),
             )
           : Padding(
-              padding: const EdgeInsets.only(right: 22.0),
+              padding: const EdgeInsets.only(right: 12.0),
               child: LineChart(
                 LineChartData(
                   gridData: const FlGridData(
@@ -91,7 +91,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
                     leftTitles: const AxisTitles(
                       axisNameWidget: Text("Weight (Kg)"),
                       sideTitles:
-                          SideTitles(showTitles: true, reservedSize: 38),
+                          SideTitles(showTitles: true, reservedSize: 33),
                     ),
                     bottomTitles: AxisTitles(
                       axisNameWidget: const Text("Time (Months)"),
@@ -101,7 +101,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
                         showTitles: true,
                         getTitlesWidget: (value, meta) => Text(
                           months[(value.abs().toInt() - 1) % 12],
-                          style: const TextStyle(color: Colors.black),
+                          style: const TextStyle(fontSize: 13),
                         ),
                       ),
                     ),

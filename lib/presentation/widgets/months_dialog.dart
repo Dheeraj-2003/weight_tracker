@@ -31,14 +31,14 @@ class _MonthsDialogState extends ConsumerState<MonthsDialog> {
         keyboardType: TextInputType.number,
         decoration: const InputDecoration(
           suffix: Text("Months"),
-          hintText: "1 <= (No. of months) < 12",
+          hintText: "1<= (No. of months) <=12",
         ),
       ),
       actions: [
         ElevatedButton(
           onPressed: () {
             if (textController.text.isNotEmpty &&
-                int.parse(textController.text) < 12 &&
+                int.parse(textController.text) <= 12 &&
                 int.parse(textController.text) >= 1) {
               ref
                   .watch(chartProvider.notifier)
