@@ -24,4 +24,22 @@ class WeightRepositoryImpl implements WeightRepository {
       throw '$e';
     }
   }
+
+  @override
+  Future<void> deleteWeight(Weight weight) async {
+    try {
+      await dataSource.deleteWeight(weight);
+    } catch (e) {
+      throw '$e';
+    }
+  }
+
+  @override
+  Future<void> updateWeight(Weight currentWeight, Weight weight) async {
+    try {
+      await dataSource.updateWeight(currentWeight, weight);
+    } catch (e) {
+      throw '$e';
+    }
+  }
 }

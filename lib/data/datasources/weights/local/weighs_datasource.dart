@@ -15,6 +15,23 @@ class WeightsDatasource {
     await db.add(weight.toMap());
   }
 
+  Future<void> deleteWeight(Weight weight) async {
+    final box = userNotifier.currentUser?.name ?? "db";
+    final db = Hive.box(box);
+    final index = db.values
+        .toList()
+        .indexWhere((entry) => Weight.fromMap(entry) == weight);
+
+    if (index != -1) {
+      await db.deleteAt(index);
+    }
+  }
+
+  Future<void> updateWeight(Weight currWeight, Weight weight) async {
+    deleteWeight(currWeight);
+    addWeight(weight);
+  }
+
   Future<List<Weight>> getWeights() async {
     final box = userNotifier.currentUser?.name ?? "db";
     final db = Hive.box(box);

@@ -38,8 +38,7 @@ class _WeightsListState extends State<WeightsList> {
             itemCount: weightsList.length,
             shrinkWrap: true,
             itemBuilder: (context, index) => CommonListTile(
-                  title: weightsList[index].weight.toString(),
-                  subTitle: formatter.format(weightsList[index].time),
+                  weight: weightsList[index],
                 ));
       } else if (state is ErrorWeightsState) {
         return Center(heightFactor: 15, child: Text(state.errorMessage));

@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:weight_tracker/data/models/weight.dart';
@@ -19,6 +18,26 @@ class WeightsNotifier extends StateNotifier<WeightsState> {
     try {
       state = WeightsLoadingState();
       await weightRepository.addWeight(weight);
+      getWeights();
+    } catch (e) {
+      log("add weights: $e");
+    }
+  }
+
+  Future<void> deleteWeight(Weight weight) async {
+    try {
+      state = WeightsLoadingState();
+      await weightRepository.deleteWeight(weight);
+      getWeights();
+    } catch (e) {
+      log("add weights: $e");
+    }
+  }
+
+  Future<void> update(Weight currentWeight, Weight weight) async {
+    try {
+      state = WeightsLoadingState();
+      await weightRepository.updateWeight(currentWeight, weight);
       getWeights();
     } catch (e) {
       log("add weights: $e");

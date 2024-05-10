@@ -28,7 +28,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     super.initState();
   }
 
-  void _openAddCategoryOverlay() {
+  void _openWeightForm() {
     showModalBottomSheet(
         context: context,
         builder: (ctx) {
@@ -61,7 +61,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 28.0),
         child: FloatingActionButton(
-          onPressed: _openAddCategoryOverlay,
+          onPressed: _openWeightForm,
           shape: const CircleBorder(),
           child: const Icon(Icons.add),
         ),
@@ -108,11 +108,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
               InkWell(
                 onTap: () {
-                  ref.watch(weightsProvider.notifier).deleteBox();
                   ref.watch(weightsProvider.notifier).getWeights();
                 },
                 child: const Text(
-                  "Recent Weight Entries",
+                  "Your Weight Entries",
                   style: TextStyle(fontSize: 18),
                 ),
               ),

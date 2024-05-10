@@ -4,22 +4,29 @@ import 'package:intl/intl.dart';
 final formatter = DateFormat.yMd();
 
 class DatePicker extends StatefulWidget {
-  const DatePicker({required this.onSelect, super.key});
+  const DatePicker({required this.onSelect, this.date, super.key});
 
   final void Function(DateTime time) onSelect;
+  final DateTime? date;
 
   @override
   State<DatePicker> createState() => _DatePickerState();
 }
 
 class _DatePickerState extends State<DatePicker> {
-  DateTime _selectedDate = DateTime.now();
+  late DateTime _selectedDate;
+
+  @override
+  void initState() {
+    _selectedDate = widget.date ?? DateTime.now();
+    super.initState();
+  }
 
   void _datePicker() async {
     final now = DateTime.now();
     final pickedDate = await showDatePicker(
       context: context,
-      initialDate: now,
+      initialDate: _selectedDate,
       firstDate: DateTime(now.year - 1, now.month, now.day),
       lastDate: now,
     );
