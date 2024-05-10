@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:weight_tracker/presentation/widgets/months_dialog.dart';
 import 'package:weight_tracker/providers/weights/weights_provider.dart';
 import 'package:weight_tracker/presentation/screens/add_weight_screen.dart';
 import 'package:weight_tracker/presentation/widgets/plot/line_chart.dart';
@@ -23,6 +24,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         });
   }
 
+  void _showMonthsDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const MonthsDialog();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,9 +51,22 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           padding: const EdgeInsets.all(8),
           child: Column(
             children: [
-              const Text(
-                "Your weight through out the months",
-                style: TextStyle(fontSize: 18),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const SizedBox(
+                    width: 80,
+                  ),
+                  const Text(
+                    "Your weight Chart",
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        _showMonthsDialog(context);
+                      },
+                      child: const Text("Set months"))
+                ],
               ),
               const SizedBox(
                 height: 20,

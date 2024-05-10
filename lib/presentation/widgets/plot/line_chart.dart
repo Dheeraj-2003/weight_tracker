@@ -1,11 +1,28 @@
+import 'dart:math';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weight_tracker/data/models/weight.dart';
+import 'package:weight_tracker/providers/chart/chart_provider.dart';
+import 'package:weight_tracker/providers/chart/chart_state.dart';
 import 'package:weight_tracker/providers/weights/weights_provider.dart';
 import 'package:weight_tracker/providers/weights/weights_state.dart';
 
-final List<String> months = ["Jan", "Feb", "Mar", "Apr", "Jun", "Jul"];
+final List<String> months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 
 class LineChartWidget extends StatefulWidget {
   const LineChartWidget({super.key});
@@ -19,10 +36,20 @@ class _LineChartWidgetState extends State<LineChartWidget> {
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, child) {
       final state = ref.watch(weightsProvider);
+      final monthsState = ref.watch(chartProvider);
+      int numMonths = 6;
+      if (monthsState is FinalMonthsState) numMonths = monthsState.months;
       List<Weight> weighList = state is WeightsLoadedState ? state.weights : [];
-      final List<FlSpot> dummyData1 = List.generate(weighList.length, (index) {
+      final List<FlSpot> dummyData1 =
+          List.generate(min(weighList.length, numMonths), (index) {
+        final DateTime time = weighList[index].time;
+        final int year = time.year;
+        final int month =
+            year == DateTime.now().year ? time.month + 12 : time.month;
         return FlSpot(
-            weighList[index].time.month.toDouble(), weighList[index].weight);
+          month.toDouble(),
+          weighList[index].weight,
+        );
       });
       return weighList.isEmpty
           ? const Center(
@@ -52,7 +79,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
                         reservedSize: 28,
                         showTitles: true,
                         getTitlesWidget: (value, meta) => Text(
-                          months[value.toInt()],
+                          months[(value.abs().toInt() - 1) % 12],
                           style: const TextStyle(color: Colors.black),
                         ),
                       ),
