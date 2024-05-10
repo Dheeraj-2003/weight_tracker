@@ -2,8 +2,8 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weight_tracker/data/models/weight.dart';
-import 'package:weight_tracker/presentation/providers/weights/weights_provider.dart';
-import 'package:weight_tracker/presentation/providers/weights/weights_state.dart';
+import 'package:weight_tracker/providers/weights/weights_provider.dart';
+import 'package:weight_tracker/providers/weights/weights_state.dart';
 
 final List<String> months = ["Jan", "Feb", "Mar", "Apr", "Jun", "Jul"];
 

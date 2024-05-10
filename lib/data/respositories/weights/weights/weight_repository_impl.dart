@@ -1,6 +1,6 @@
-import 'package:weight_tracker/data/datasources/local/weighs_datasource.dart';
+import 'package:weight_tracker/data/datasources/weights/local/weighs_datasource.dart';
 import 'package:weight_tracker/data/models/weight.dart';
-import 'package:weight_tracker/data/respositories/weights/weight_repository.dart';
+import 'package:weight_tracker/data/respositories/weights/weights/weight_repository.dart';
 
 class WeightRepositoryImpl implements WeightRepository {
   final WeightsDatasource dataSource;

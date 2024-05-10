@@ -1,18 +1,40 @@
-import 'package:flutter/material.dart';
-import 'package:weight_tracker/presentation/screens/home_screen.dart';
+import 'dart:developer';
 
-class ProfileForm extends StatefulWidget {
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:weight_tracker/data/models/user.dart';
+import 'package:weight_tracker/presentation/screens/home_screen.dart';
+import 'package:weight_tracker/providers/user/user_provider.dart';
+
+class ProfileForm extends ConsumerStatefulWidget {
   const ProfileForm({super.key});
 
   @override
-  State<ProfileForm> createState() => _ProfileFormState();
+  ConsumerState<ProfileForm> createState() => _ProfileFormState();
 }
 
-class _ProfileFormState extends State<ProfileForm> {
+class _ProfileFormState extends ConsumerState<ProfileForm> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
 
+  @override
+  void dispose() {
+    _nameController.dispose();
+    super.dispose();
+  }
+
   void _onEnter() {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+    _formKey.currentState!.save();
+    try {
+      ref
+          .watch(userProvider.notifier)
+          .addUser(User(name: _nameController.text));
+    } catch (e) {
+      log("$e");
+    }
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const HomeScreen()));
   }
@@ -24,6 +46,12 @@ class _ProfileFormState extends State<ProfileForm> {
         child: Column(
           children: [
             TextFormField(
+              validator: (value) {
+                if (value == null || value.trim().isEmpty) {
+                  return "Your name is requied";
+                }
+                return null;
+              },
               controller: _nameController,
               decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.notes_rounded),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weight_tracker/data/models/weight.dart';
-import 'package:weight_tracker/presentation/providers/weights/weights_provider.dart';
+import 'package:weight_tracker/providers/weights/weights_provider.dart';
 import 'package:weight_tracker/presentation/widgets/date_picker.dart';
 
 class WeightForm extends ConsumerStatefulWidget {

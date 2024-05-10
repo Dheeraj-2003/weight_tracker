@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:weight_tracker/presentation/providers/weights/weights_provider.dart';
+import 'package:weight_tracker/providers/weights/weights_provider.dart';
 import 'package:weight_tracker/presentation/screens/add_weight_screen.dart';
 import 'package:weight_tracker/presentation/widgets/plot/line_chart.dart';
 import 'package:weight_tracker/presentation/widgets/weights_list.dart';
