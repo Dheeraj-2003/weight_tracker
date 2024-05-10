@@ -39,7 +39,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
       int numMonths = 6;
       if (monthsState is FinalMonthsState) numMonths = monthsState.months;
       List<Weight> weighList = state is WeightsLoadedState ? state.weights : [];
-      int startingMonth = weighList[0].time.month;
+      int startingMonth = weighList.isNotEmpty ? weighList[0].time.month : 1;
       int currMonth = startingMonth;
       int interval = 0;
 
@@ -91,7 +91,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
                     leftTitles: const AxisTitles(
                       axisNameWidget: Text("Weight (Kg)"),
                       sideTitles:
-                          SideTitles(showTitles: true, reservedSize: 33),
+                          SideTitles(showTitles: true, reservedSize: 36),
                     ),
                     bottomTitles: AxisTitles(
                       axisNameWidget: const Text("Time (Months)"),

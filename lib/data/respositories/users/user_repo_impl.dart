@@ -24,4 +24,22 @@ class UserRepositoryImpl implements UserRepository {
       throw "$e";
     }
   }
+
+  @override
+  Future<User> getUser() async {
+    try {
+      return await dataSource.getUser();
+    } catch (e) {
+      throw "$e";
+    }
+  }
+
+  @override
+  Future<List<User>> getUsers() async {
+    try {
+      return await dataSource.getUsers();
+    } catch (e) {
+      throw "$e";
+    }
+  }
 }

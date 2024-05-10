@@ -1,15 +1,23 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:weight_tracker/data/models/weight.dart';
+import 'package:weight_tracker/providers/user/user_notifier.dart';
 
 class WeightsDatasource {
-  static const box = "db";
-  final db = Hive.box(box);
+  final UserNotifier userNotifier;
+  WeightsDatasource({
+    required this.userNotifier,
+  });
 
   Future<void> addWeight(Weight weight) async {
+    final box = userNotifier.currentUser?.name ?? "db";
+    final db = Hive.box(box);
     await db.add(weight.toMap());
   }
 
   Future<List<Weight>> getWeights() async {
+    final box = userNotifier.currentUser?.name ?? "db";
+    final db = Hive.box(box);
     final List<Weight> weights = [];
 
     for (var i = 0; i < db.length; i++) {

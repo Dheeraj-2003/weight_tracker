@@ -15,13 +15,13 @@ class User {
     );
   }
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+  Map<dynamic, dynamic> toMap() {
+    return <dynamic, dynamic>{
       'name': name,
     };
   }
 
-  factory User.fromMap(Map<String, dynamic> map) {
+  factory User.fromMap(Map<dynamic, dynamic> map) {
     return User(
       name: map['name'] as String,
     );
@@ -29,7 +29,8 @@ class User {
 
   String toJson() => json.encode(toMap());
 
-  factory User.fromJson(String source) => User.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory User.fromJson(String source) =>
+      User.fromMap(json.decode(source) as Map<dynamic, dynamic>);
 
   @override
   String toString() => 'User(name: $name)';
@@ -37,9 +38,8 @@ class User {
   @override
   bool operator ==(covariant User other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.name == name;
+
+    return other.name == name;
   }
 
   @override

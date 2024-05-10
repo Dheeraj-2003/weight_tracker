@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:weight_tracker/data/models/weight.dart';
 import 'package:weight_tracker/data/respositories/weights/weights/weight_repository.dart';
 import 'package:weight_tracker/providers/weights/weights_state.dart';
@@ -14,7 +15,7 @@ class WeightsNotifier extends StateNotifier<WeightsState> {
 
   final WeightRepository weightRepository;
 
-  void addWeight(Weight weight) async {
+  Future<void> addWeight(Weight weight) async {
     try {
       state = WeightsLoadingState();
       await weightRepository.addWeight(weight);
@@ -24,7 +25,7 @@ class WeightsNotifier extends StateNotifier<WeightsState> {
     }
   }
 
-  void getWeights() async {
+  Future<void> getWeights() async {
     try {
       weightList = await weightRepository.getWeights();
       weightList.sort((b, a) => a.time.compareTo(b.time));
@@ -32,5 +33,13 @@ class WeightsNotifier extends StateNotifier<WeightsState> {
     } catch (e) {
       log("get weights: $e");
     }
+  }
+
+  Future<void> deleteBox() async {
+    Hive.deleteBoxFromDisk("db");
+    Hive.deleteBoxFromDisk("db1");
+    Hive.deleteBoxFromDisk("d");
+    Hive.deleteBoxFromDisk("r");
+    Hive.deleteBoxFromDisk("users");
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weight_tracker/presentation/widgets/months_dialog.dart';
+import 'package:weight_tracker/presentation/widgets/user_dialog.dart';
+import 'package:weight_tracker/providers/user/user_provider.dart';
 import 'package:weight_tracker/providers/weights/weights_provider.dart';
 import 'package:weight_tracker/presentation/screens/add_weight_screen.dart';
 import 'package:weight_tracker/presentation/widgets/plot/line_chart.dart';
@@ -16,6 +18,16 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await ref.watch(userProvider.notifier).getUser();
+      await ref.watch(userProvider.notifier).getUser();
+      await ref.read(weightsProvider.notifier).getWeights();
+    });
+    super.initState();
+  }
+
   void _openAddCategoryOverlay() {
     showModalBottomSheet(
         context: context,
@@ -33,6 +45,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 
+  void _showUserDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const UserDialog();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +67,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         ),
       ),
       appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                _showUserDialog(context);
+              },
+              icon: const Icon(Icons.person)),
+        ],
         title: const Text("Weight Tracker"),
         centerTitle: true,
       ),
@@ -80,6 +108,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
               InkWell(
                 onTap: () {
+                  ref.watch(weightsProvider.notifier).deleteBox();
                   ref.watch(weightsProvider.notifier).getWeights();
                 },
                 child: const Text(

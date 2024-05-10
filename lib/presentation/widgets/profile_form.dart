@@ -23,20 +23,21 @@ class _ProfileFormState extends ConsumerState<ProfileForm> {
     super.dispose();
   }
 
-  void _onEnter() {
+  void _onEnter() async {
     if (!_formKey.currentState!.validate()) {
       return;
     }
     _formKey.currentState!.save();
     try {
-      ref
+      await ref
           .watch(userProvider.notifier)
           .addUser(User(name: _nameController.text));
     } catch (e) {
       log("$e");
     }
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const HomeScreen()));
+    Navigator.of(context).popUntil((route) => false);
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const HomeScreen()));
   }
 
   @override
