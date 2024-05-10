@@ -37,10 +37,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: _openAddCategoryOverlay,
-        shape: const CircleBorder(),
-        child: const Icon(Icons.add),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 28.0),
+        child: FloatingActionButton(
+          onPressed: _openAddCategoryOverlay,
+          shape: const CircleBorder(),
+          child: const Icon(Icons.add),
+        ),
       ),
       appBar: AppBar(
         title: const Text("Weight Tracker"),

@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -40,8 +39,30 @@ class _LineChartWidgetState extends State<LineChartWidget> {
       int numMonths = 6;
       if (monthsState is FinalMonthsState) numMonths = monthsState.months;
       List<Weight> weighList = state is WeightsLoadedState ? state.weights : [];
+      int startingMonth = weighList[0].time.month;
+      int currMonth = startingMonth;
+      int interval = 0;
+
+      //Calculation for interval: start
+      for (int i = 0; i < weighList.length; i++) {
+        int pastMonth = weighList[i].time.month;
+        if (currMonth == pastMonth &&
+            i - 1 >= 0 &&
+            pastMonth != weighList[i - 1].time.month) break;
+        if (currMonth - pastMonth > numMonths) {
+          break;
+        }
+        if (currMonth - pastMonth < 0 &&
+            currMonth - pastMonth + 12 > numMonths) {
+          break;
+        }
+
+        interval++;
+      }
+      //Calculation for interval: end
+
       final List<FlSpot> dummyData1 =
-          List.generate(min(weighList.length, numMonths), (index) {
+          List.generate(min(weighList.length, interval), (index) {
         final DateTime time = weighList[index].time;
         final int year = time.year;
         final int month =

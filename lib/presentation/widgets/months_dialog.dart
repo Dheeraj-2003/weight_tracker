@@ -30,13 +30,16 @@ class _MonthsDialogState extends ConsumerState<MonthsDialog> {
             .copyWith(color: Theme.of(context).colorScheme.onBackground),
         keyboardType: TextInputType.number,
         decoration: const InputDecoration(
-          hintText: "No. of months",
+          suffix: Text("Months"),
+          hintText: "1 <= (No. of months) < 12",
         ),
       ),
       actions: [
         ElevatedButton(
           onPressed: () {
-            if (textController.text.isNotEmpty) {
+            if (textController.text.isNotEmpty &&
+                int.parse(textController.text) < 12 &&
+                int.parse(textController.text) >= 1) {
               ref
                   .watch(chartProvider.notifier)
                   .setMonthsCount(int.parse(textController.text));
