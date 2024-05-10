@@ -19,6 +19,9 @@ class _WeightFormState extends ConsumerState<WeightForm> {
   DateTime _selectedTime = DateTime.now();
 
   void _onSave() {
+    if (!_formKey.currentState!.validate()) return;
+
+    _formKey.currentState!.save();
     ref.watch(weightsProvider.notifier).addWeight(Weight(
         time: _selectedTime, weight: double.parse(_weightController.text)));
     Navigator.of(context).pop();
@@ -43,6 +46,12 @@ class _WeightFormState extends ConsumerState<WeightForm> {
               ),
               const SizedBox(height: 26),
               TextFormField(
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return "Your weight is requied";
+                  }
+                  return null;
+                },
                 keyboardType: TextInputType.number,
                 controller: _weightController,
                 decoration: const InputDecoration(
@@ -52,7 +61,7 @@ class _WeightFormState extends ConsumerState<WeightForm> {
                   suffix: Text("Kg"),
                 ),
               ),
-              const SizedBox(height: 22),
+              const SizedBox(height: 10),
               DatePicker(
                 onSelect: _selectDate,
               ),
