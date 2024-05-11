@@ -91,10 +91,11 @@ class _WeightFormState extends ConsumerState<WeightForm> {
               const SizedBox(height: 26),
               TextFormField(
                 validator: (value) {
-                  if (value == null ||
-                      value.trim().isEmpty ||
-                      double.parse(value.trim()) <= 0) {
+                  if (value == null || value.trim().isEmpty) {
                     return "Please enter your weight (Kg)";
+                  } else if (value.length >= 9 ||
+                      double.parse(value.trim()) <= 0) {
+                    return "Please be reasonable!";
                   }
                   return null;
                 },

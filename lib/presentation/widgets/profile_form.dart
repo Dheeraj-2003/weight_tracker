@@ -50,6 +50,8 @@ class _ProfileFormState extends ConsumerState<ProfileForm> {
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
                   return "Your name is requied";
+                } else if (value.length > 30) {
+                  return "Username can't be lengthier than 30 characters";
                 }
                 return null;
               },
