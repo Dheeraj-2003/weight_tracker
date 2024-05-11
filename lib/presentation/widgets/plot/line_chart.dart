@@ -24,6 +24,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
     return Consumer(builder: (context, ref, child) {
       final state = ref.watch(weightsProvider);
       final monthsState = ref.watch(chartProvider);
+
       int numMonths = 6;
       if (monthsState is FinalMonthsState) numMonths = monthsState.months;
       List<Weight> weighList = state is WeightsLoadedState ? state.weights : [];
@@ -40,6 +41,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
           weighList[index].weight,
         );
       });
+
       return weighList.isEmpty
           ? const Center(
               child: Text("Add weights to analyze"),
@@ -56,10 +58,19 @@ class _LineChartWidgetState extends State<LineChartWidget> {
                         sideTitles: SideTitles(showTitles: false)),
                     rightTitles: const AxisTitles(
                         sideTitles: SideTitles(showTitles: false)),
-                    leftTitles: const AxisTitles(
-                      axisNameWidget: Text("Weight (Kg)"),
-                      sideTitles:
-                          SideTitles(showTitles: true, reservedSize: 36),
+                    leftTitles: AxisTitles(
+                      axisNameWidget: const Text(
+                        "Weight (Kg)",
+                        style: TextStyle(fontSize: 12),
+                      ),
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        reservedSize: 35,
+                        getTitlesWidget: (value, meta) => Text(
+                          value.toString(),
+                          style: const TextStyle(fontSize: 11),
+                        ),
+                      ),
                     ),
                     bottomTitles: AxisTitles(
                       axisNameWidget: const Text("Time (Months)"),
