@@ -31,7 +31,7 @@ class _WeightsListState extends State<WeightsList> {
           return const Center(
             child: Center(
                 heightFactor: 15,
-                child: Text("Your recent weights will be shown here")),
+                child: Text("Your weight entries will be shown here")),
           );
         }
         return ListView.builder(
