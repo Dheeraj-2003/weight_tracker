@@ -83,7 +83,9 @@ class _WeightFormState extends ConsumerState<WeightForm> {
                             Navigator.of(context).pop();
                           },
                           icon: const Icon(Icons.delete_outline_rounded))
-                      : const SizedBox(),
+                      : const SizedBox(
+                          width: 30,
+                        ),
                 ],
               ),
               const SizedBox(height: 26),
