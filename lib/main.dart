@@ -4,6 +4,7 @@ import 'package:weight_tracker/app/app.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
+  
   WidgetsFlutterBinding.ensureInitialized();
 
   await Hive.initFlutter();
