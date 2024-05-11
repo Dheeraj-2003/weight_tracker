@@ -20,12 +20,12 @@ This Flutter application is a weight tracker that allows users to create profile
   ##
 
 <div align="center">
-  <img src="https://github.com/Dheeraj-2003/weight_tracker/blob/main/video%20walkthrough/Images/create%20profile.jpg" alt="Sign up Screen" width="250" />
-  <img src="https://github.com/Dheeraj-2003/weight_tracker/blob/main/video%20walkthrough/Images/Add%20or%20edit%20weights.jpg" alt="Add/edit weight entries" width="250" />
-  <img src="https://github.com/Dheeraj-2003/weight_tracker/blob/main/video%20walkthrough/Images/home%20screen.jpg" alt="Home Screen" width="250" />
+  <img src="https://github.com/Dheeraj-2003/weight_tracker/blob/main/pictures/Images/create%20profile.jpg" alt="Sign up Screen" width="250" />
+  <img src="https://github.com/Dheeraj-2003/weight_tracker/blob/main/pictures/Images/Add%20or%20edit%20weights.jpg" alt="Add/edit weight entries" width="250" />
+  <img src="https://github.com/Dheeraj-2003/weight_tracker/blob/main/pictures/Images/home%20screen.jpg" alt="Home Screen" width="250" />
 </div>
 <div align="center">
-  <img src="https://github.com/Dheeraj-2003/weight_tracker/blob/main/video%20walkthrough/Images/Switch%20user.jpg" alt="Switch user" width="250" />
-  <img src="https://github.com/Dheeraj-2003/weight_tracker/blob/main/video%20walkthrough/Images/change%20months.jpg" alt="Edit months" width="250" />
+  <img src="https://github.com/Dheeraj-2003/weight_tracker/blob/main/pictures/Images/Switch%20user.jpg" alt="Switch user" width="250" />
+  <img src="https://github.com/Dheeraj-2003/weight_tracker/blob/main/pictures/Images/change%20months.jpg" alt="Edit months" width="250" />
 </div>
 
