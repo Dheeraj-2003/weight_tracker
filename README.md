@@ -1,16 +1,31 @@
-# weight_tracker
+# Weight Tracker App
 
-A new Flutter project.
+## Overview
+This Flutter application is a weight tracker that allows users to create profiles, log their weight entries, view a list of all weight entries sorted by time, and visualize weight changes over time using a line graph. The app operates fully offline, storing user data locally using the Hive database.
 
-## Getting Started
+## Features
+- Profile Creation: Users can create profiles with a unique username.
+- Weight Entry: Users can input their weight in kilograms and save it to the local database.
+- View Entries: Users can view a list of all weight entries, sorted by time.
+- Line Graph: Users can visualize their weight changes over time using a line graph.
+- Editing Entries: Users can edit previously entered weight entries.
+- Switching Profiles: Users can switch between different user profiles.
 
-This project is a starting point for a Flutter application.
+## Technologies Used
+- **Flutter**: A cross-platform framework for building mobile applications.
+- **Hive**: A lightweight and fast NoSQL database for Flutter, used for local data storage.
+- **Riverpod**: A state management library for Flutter, used for managing app-level state.
+- **Provider**: A dependency injection library for Flutter, used for injecting dependencies into widgets.
 
-A few resources to get you started if this is your first Flutter project:
+  ##
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<div align="center">
+  <img src="https://github.com/Dheeraj-2003/weight_tracker/blob/main/video%20walkthrough/Images/create%20profile.jpg" alt="Sign up Screen" width="250" />
+  <img src="https://github.com/Dheeraj-2003/weight_tracker/blob/main/video%20walkthrough/Images/Add%20or%20edit%20weights.jpg" alt="Add/edit weight entries" width="250" />
+  <img src="https://github.com/Dheeraj-2003/weight_tracker/blob/main/video%20walkthrough/Images/home%20screen.jpg" alt="Home Screen" width="250" />
+</div>
+<div align="center">
+  <img src="https://github.com/Dheeraj-2003/weight_tracker/blob/main/video%20walkthrough/Images/Switch%20user.jpg" alt="Switch user" width="250" />
+  <img src="https://github.com/Dheeraj-2003/weight_tracker/blob/main/video%20walkthrough/Images/change%20months.jpg" alt="Edit months" width="250" />
+</div>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
