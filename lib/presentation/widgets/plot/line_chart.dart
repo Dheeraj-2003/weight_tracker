@@ -7,21 +7,9 @@ import 'package:weight_tracker/providers/chart/chart_provider.dart';
 import 'package:weight_tracker/providers/chart/chart_state.dart';
 import 'package:weight_tracker/providers/weights/weights_provider.dart';
 import 'package:weight_tracker/providers/weights/weights_state.dart';
+import 'package:weight_tracker/utils/chart_utils.dart';
 
-final List<String> months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
+final List<String> months = LineCharUtils().months;
 
 class LineChartWidget extends StatefulWidget {
   const LineChartWidget({super.key});
@@ -39,27 +27,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
       int numMonths = 6;
       if (monthsState is FinalMonthsState) numMonths = monthsState.months;
       List<Weight> weighList = state is WeightsLoadedState ? state.weights : [];
-      int startingMonth = weighList.isNotEmpty ? weighList[0].time.month : 1;
-      int currMonth = startingMonth;
-      int interval = 0;
-
-      //Calculation for interval: start
-      for (int i = 0; i < weighList.length; i++) {
-        int pastMonth = weighList[i].time.month;
-        if (currMonth == pastMonth &&
-            i - 1 >= 0 &&
-            pastMonth != weighList[i - 1].time.month) break;
-        if (currMonth - pastMonth > numMonths) {
-          break;
-        }
-        if (currMonth - pastMonth < 0 &&
-            currMonth - pastMonth + 12 > numMonths) {
-          break;
-        }
-
-        interval++;
-      }
-      //Calculation for interval: end
+      int interval = LineCharUtils().calculateInterval(weighList, numMonths);
 
       final List<FlSpot> dummyData1 =
           List.generate(min(weighList.length, interval), (index) {
